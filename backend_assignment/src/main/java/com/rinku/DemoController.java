@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/program")
 public class DemoController {
     private final AssemblyLang assemblyLang;
-
     @Autowired
     public DemoController(AssemblyLang assemblyLang) {
         this.assemblyLang = assemblyLang;

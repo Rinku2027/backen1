@@ -13,12 +13,9 @@ public class AssemblyLang {
     }
 
     public void executeProgram(String[] instructions) {
-        // Initialize registers and memory
-        int[] registers = new int[8]; // 8 registers R0 to R7
-        int[] memory = new int[100]; // Memory array with 100 memory locations
-
-        // Start parsing and executing the instructions
-        for (String instruction : instructions) {
+        int[] registers = new int[8];
+        int[] memory = new int[100];
+for (String instruction : instructions) {
             String[] parts = instruction.trim().split("\\s*,\\s*");
             String opcode = parts[0].toUpperCase();
 
