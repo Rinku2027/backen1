@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assembly Language Interpreter</title>
+</head>
+<body>
+<h1>Assembly Language Interpreter</h1>
+<form id="programForm">
+    <textarea rows="5" cols="50" id="instructions" placeholder="Enter assembly language instructions here..."></textarea>
+    <br>
+    <button type="button" onclick="executeProgram()">Execute Program</button>
+</form>
+
+<h2>Program Status:</h2>
+<pre id="programStatus"></pre>
+
+<script>
+        function executeProgram() {
+            const instructions = document.getElementById('instructions').value.trim().split('\n');
+            const requestBody = {
+                instructions: instructions
+            };
+
+            fetch('http://localhost:9090/execute', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('programStatus').innerText = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('programStatus').innerText = 'An error occurred during execution.';
+            });
+        }
+    </script>
+</body>
+</html>
